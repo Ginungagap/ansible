@@ -16,6 +16,7 @@
           - docker-logrotate
           - docker-engine
         state: absent
+      become: yes  
 
     - name: Install yum utils
       yum:
