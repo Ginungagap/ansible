@@ -1,7 +1,8 @@
 ---
 - name: Install Docker
-  gather_facts: No
+  gather_facts: yes
   hosts: docker
+  become: yes 
  
   tasks:
     - name: Remove docker if installed from CentOS repo
@@ -16,8 +17,7 @@
           - docker-logrotate
           - docker-engine
         state: absent
-      become: yes  
-
+      
     - name: Install yum utils
       yum:
         name: yum-utils
@@ -38,17 +38,15 @@
         url: https://download.docker.com/linux/centos/docker-ce.repo
         dest: /etc/yum.repos.d/docker-ce.repo
         mode: 0644
-      become: yes
- 
+       
     - name: Install Docker
       package:
         name: docker-ce
         state: latest
-      become: yes
- 
+      
     - name: Start Docker service
       service:
         name: docker
         state: started
         enabled: yes
-      become: yes
+      

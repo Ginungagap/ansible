@@ -1,2 +1,4 @@
 [docker]
 ansible-host1
+ansible-host2
+ansible-host3
